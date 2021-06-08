@@ -1,0 +1,38 @@
+---
+title: "Exploração do clima em João Pessoa, Campina Grande e Patos - PB"
+output: 
+  html_document:
+    code_folding: hide
+---
+
+```{r warning=FALSE, message=FALSE}
+library(tidyverse)
+library(here)
+theme_set(theme_bw())
+```
+
+Respondida as questões 1, 2 e 3
+
+```{r}
+# SEMPRE read_csv NUNCA read.csv
+clima_tudo = read_csv(
+    here("data/tempo-jp-cg-pt.csv"),
+    col_types = cols(
+        .default = col_double(),
+        cidade = col_character(),
+        semana = col_date(format = ""),
+        ano = col_integer(),
+        mes = col_integer()
+    )
+)
+
+clima = clima_tudo %>% 
+    filter(ano == 2019)
+
+clima %>% 
+    slice(1:8)
+
+#Como foi o vento nessas 3 cidades no ano que já analisei (2019)? 
+```
+
+
